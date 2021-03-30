@@ -1,0 +1,9 @@
+com\isabel\aapspapi\domain\Country.class
+com\isabel\aapspapi\util\Constants.class
+com\isabel\aapspapi\service\CountriesApiService.class
+com\isabel\aapspapi\App.class
+com\isabel\aapspapi\service\CountriesService.class
+com\isabel\aapspapi\util\R.class
+com\isabel\aapspapi\AppController.class
+com\isabel\aapspapi\domain\Country$CountryBuilder.class
+com\isabel\aapspapi\util\Alerts.class
