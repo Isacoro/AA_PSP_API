@@ -4,7 +4,6 @@ import com.isabel.aapspapi.domain.Country;
 import com.isabel.aapspapi.service.CountriesService;
 import com.isabel.aapspapi.util.Alerts;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -90,14 +89,13 @@ public class AppController implements Initializable {
     public void fijarColumnasTabla(){
         Field[] fields = Country.class.getDeclaredFields();
         for(Field field : fields){
+
             TableColumn<Country, String> column = new TableColumn<>(field.getName());
             column.setCellValueFactory(new PropertyValueFactory<>(field.getName()));
             tvCountries.getColumns().add(column);
         }
         tvCountries.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
-
-
 
     public void loadingCountries(String continent) {
         List<Country> countries = null;

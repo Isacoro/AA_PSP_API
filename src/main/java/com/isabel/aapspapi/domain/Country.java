@@ -9,7 +9,6 @@ import lombok.*;
 
 @Data
 @Builder
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class Country {
@@ -20,4 +19,13 @@ public class Country {
     private String region;
     private String continent;
     private int population;
+
+
+    @Override
+    public String toString(){
+        return name + "   " + region;
+    }
+
 }
+
+
