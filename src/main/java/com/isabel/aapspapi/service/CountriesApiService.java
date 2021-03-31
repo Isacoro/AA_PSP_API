@@ -4,6 +4,7 @@ import com.isabel.aapspapi.domain.Country;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import rx.Observable;
 
 import java.util.List;
 
@@ -13,9 +14,9 @@ import java.util.List;
 
 public interface CountriesApiService {
 
-    //Todos los países
+    //Todos los países con RxJava
     @GET("/rest/v2/all")
-    Call<List<Country>> getAllCountries();
+    Observable<List<Country>> getAllCountries();
 
     //Países por Continente
     @GET("/rest/v2/region/{region}")

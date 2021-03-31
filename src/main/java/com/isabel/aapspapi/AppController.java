@@ -26,10 +26,10 @@ import java.util.concurrent.CompletableFuture;
 public class AppController implements Initializable {
 
     public TableView<Country> tvCountries;
-    public ListView lvCountriesEu;
+    public ListView lvCountries;
     public ComboBox<String> cbContinent;
-    public Button btCountriesEu;
-    public TextField tfCapital, tfPopulation, tfCapitalCountryEu, tfLanguage;
+    public Button btCountries;
+    public TextField tfCapital, tfLanguage;
     public ProgressIndicator piAllCountries, piAllCountriesEu;
     public WebView wvFlag = new WebView();
 
@@ -50,7 +50,7 @@ public class AppController implements Initializable {
 
     //Países por Continente elegido
     @FXML
-    public void allCountries(Event event){
+    public void allCountriesContinent(Event event){
         String selection = cbContinent.getValue();
 
         switch (selection){
@@ -80,18 +80,14 @@ public class AppController implements Initializable {
         }
     }
 
-    //Países de Europa
-    @FXML
-    public void allCountriesEu(Event event){
-
-    }
 
     //Mostrar Detalle (bandera) por país elegido
     @FXML
-    public void countryDetail(Event event){
+    public void detailFlag(Event event){
         Country country = tvCountries.getSelectionModel().getSelectedItem();
         wvFlag.getEngine().load(country.getFlag());
     }
+
 
     //Fijar columnas de la tabla países por continente
     public void fijarColumnasTabla(){
@@ -105,6 +101,7 @@ public class AppController implements Initializable {
         tvCountries.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
+
     //Carga de los países por continente
     public void loadingCountries(String continent) {
         List<Country> countries = null;
@@ -117,9 +114,21 @@ public class AppController implements Initializable {
         tvCountries.setItems(FXCollections.observableArrayList(countries));
     }
 
+
     //Indicador de progreso
     public void progressIndicatorActive(boolean active){
         piAllCountries.setVisible(active);
         piAllCountries.setProgress(-1);
+    }
+
+
+
+    //Todos los países de la api
+    @FXML
+    public void allCountries(Event event){
+    }
+
+    @FXML
+    public void detailLanguage(Event event){
     }
 }
