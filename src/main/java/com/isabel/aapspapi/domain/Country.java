@@ -14,10 +14,8 @@ import lombok.*;
 public class Country {
 
     private String name;
-    private String country;
     private String capital;
     private String region;
-    private String continent;
     private int population;
 
 
