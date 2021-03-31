@@ -17,12 +17,9 @@ public class Country {
     private String capital;
     private String region;
     private int population;
+    private String flag;
 
 
-    @Override
-    public String toString(){
-        return name + "   " + region;
-    }
 
 }
 

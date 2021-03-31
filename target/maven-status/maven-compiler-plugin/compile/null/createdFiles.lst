@@ -6,4 +6,5 @@ com\isabel\aapspapi\service\CountriesService.class
 com\isabel\aapspapi\util\R.class
 com\isabel\aapspapi\AppController.class
 com\isabel\aapspapi\domain\Country$CountryBuilder.class
+com\isabel\aapspapi\domain\CountriesEu.class
 com\isabel\aapspapi\util\Alerts.class

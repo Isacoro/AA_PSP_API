@@ -55,9 +55,9 @@
             </Label>
             <Button layoutX="347.0" layoutY="100.0" mnemonicParsing="false" onAction="#allCountries" text="Aceptar" />
             <TableView fx:id="tvCountries" layoutX="19.0" layoutY="166.0" onMouseClicked="#countryDetail" prefHeight="262.0" prefWidth="435.0" />
-            <ProgressIndicator fx:id="piAllCountries" layoutX="425.0" layoutY="439.0" prefHeight="43.0" prefWidth="46.0" progress="0.0" />
-            <ProgressIndicator fx:id="piAllCountriesEu" layoutX="765.0" layoutY="439.0" progress="0.0" />
-            <WebView fx:id="wvFlag" layoutX="60.0" layoutY="439.0" prefHeight="143.0" prefWidth="347.0" />
+            <ProgressIndicator fx:id="piAllCountries" layoutX="413.0" layoutY="449.0" prefHeight="43.0" prefWidth="46.0" progress="0.0" />
+            <ProgressIndicator fx:id="piAllCountriesEu" layoutX="776.0" layoutY="334.0" progress="0.0" />
+            <WebView fx:id="wvFlag" layoutX="19.0" layoutY="439.0" prefHeight="143.0" prefWidth="355.0" />
             <Label layoutX="31.0" layoutY="143.0" text="Países del continente elegido, selecciona uno para ver su bandera">
                <font>
                   <Font size="14.0" />

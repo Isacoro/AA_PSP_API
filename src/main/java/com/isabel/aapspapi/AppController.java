@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -29,12 +31,15 @@ public class AppController implements Initializable {
     public Button btCountriesEu;
     public TextField tfCapital, tfPopulation, tfCapitalCountryEu, tfLanguage;
     public ProgressIndicator piAllCountries, piAllCountriesEu;
+    public WebView wvFlag = new WebView();
 
     private CountriesService countriesService;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fijarColumnasTabla();
+
+        progressIndicatorActive(false);
 
         String[] continents = new String[]{"África", "América", "Asia", "Europa", "Oceanía"};
         cbContinent.setValue("Selecciona");
@@ -43,6 +48,7 @@ public class AppController implements Initializable {
         countriesService = new CountriesService();
     }
 
+    //Países por Continente elegido
     @FXML
     public void allCountries(Event event){
         String selection = cbContinent.getValue();
@@ -50,23 +56,23 @@ public class AppController implements Initializable {
         switch (selection){
             case "África":
                 CompletableFuture.runAsync(() -> loadingCountries("Africa"));
-                loading();
+                progressIndicatorActive(true);
                 break;
             case "América":
                 CompletableFuture.runAsync(() -> loadingCountries("Americas"));
-                loading();
+                progressIndicatorActive(true);
                 break;
             case "Asia":
                 CompletableFuture.runAsync(() -> loadingCountries("Asia"));
-                loading();
+                progressIndicatorActive(true);
                 break;
             case "Europa":
                 CompletableFuture.runAsync(() -> loadingCountries("Europe"));
-                loading();
+                progressIndicatorActive(true);
                 break;
             case "Oceanía":
                 CompletableFuture.runAsync(() -> loadingCountries("Oceania"));
-                loading();
+                progressIndicatorActive(true);
                 break;
             default:
                 Alerts.alertInformation("Elige una opción");
@@ -74,18 +80,20 @@ public class AppController implements Initializable {
         }
     }
 
-
+    //Países de Europa
     @FXML
     public void allCountriesEu(Event event){
 
     }
 
+    //Mostrar Detalle (bandera) por país elegido
     @FXML
     public void countryDetail(Event event){
-
+        Country country = tvCountries.getSelectionModel().getSelectedItem();
+        wvFlag.getEngine().load(country.getFlag());
     }
 
-
+    //Fijar columnas de la tabla países por continente
     public void fijarColumnasTabla(){
         Field[] fields = Country.class.getDeclaredFields();
         for(Field field : fields){
@@ -97,8 +105,10 @@ public class AppController implements Initializable {
         tvCountries.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
+    //Carga de los países por continente
     public void loadingCountries(String continent) {
         List<Country> countries = null;
+
         try {
             countries = countriesService.getAllCountriesRegion(continent);
         } catch (IOException e) {
@@ -107,7 +117,9 @@ public class AppController implements Initializable {
         tvCountries.setItems(FXCollections.observableArrayList(countries));
     }
 
-    public void loading(){
-
+    //Indicador de progreso
+    public void progressIndicatorActive(boolean active){
+        piAllCountries.setVisible(active);
+        piAllCountries.setProgress(-1);
     }
 }
