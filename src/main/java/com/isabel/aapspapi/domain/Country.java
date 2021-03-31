@@ -18,8 +18,13 @@ public class Country {
     private String region;
     private int population;
     private String flag;
+    private String Language;
 
-
+    //ToString para la lista de todos los países
+    @Override
+    public String toString() {
+        return name;
+    }
 
 }
 

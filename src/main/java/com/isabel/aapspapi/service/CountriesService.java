@@ -33,6 +33,7 @@ public class CountriesService {
     }
 
 
+    //Lista de todos los países según el continente
     public List<Country> getAllCountriesRegion(String region) throws IOException {
         Call<List<Country>> callAllCountries = countryApiService.getAllCountriesRegion(region);
 
@@ -40,6 +41,7 @@ public class CountriesService {
         return response.body();
     }
 
+    //Lista de todos los países usando RxJava
     public Observable<List<Country>> getAllCountries(){
         return countryApiService.getAllCountries();
     }

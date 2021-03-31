@@ -28,7 +28,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ListView fx:id="lvCountries" layoutX="528.0" layoutY="167.0" prefHeight="335.0" prefWidth="217.0" />
+            <ListView fx:id="lvCountries" layoutX="528.0" layoutY="167.0" onMouseClicked="#detailList" prefHeight="335.0" prefWidth="217.0" />
             <Label layoutX="774.0" layoutY="277.0" prefHeight="20.0" prefWidth="50.0" text="Idioma:">
                <font>
                   <Font size="14.0" />
@@ -51,7 +51,7 @@
             <Button layoutX="347.0" layoutY="100.0" mnemonicParsing="false" onAction="#allCountriesContinent" text="Aceptar" />
             <TableView fx:id="tvCountries" layoutX="19.0" layoutY="166.0" onMouseClicked="#detailFlag" prefHeight="262.0" prefWidth="435.0" />
             <ProgressIndicator fx:id="piAllCountries" layoutX="413.0" layoutY="449.0" prefHeight="43.0" prefWidth="46.0" progress="0.0" />
-            <ProgressIndicator fx:id="piAllCountriesEu" layoutX="776.0" layoutY="334.0" progress="0.0" />
+            <ProgressIndicator fx:id="piAllCountriesEu" layoutX="625.0" layoutY="315.0" progress="0.0" />
             <WebView fx:id="wvFlag" layoutX="19.0" layoutY="439.0" prefHeight="143.0" prefWidth="355.0" />
             <Label layoutX="31.0" layoutY="143.0" text="Países del continente elegido, selecciona uno para ver su bandera">
                <font>
