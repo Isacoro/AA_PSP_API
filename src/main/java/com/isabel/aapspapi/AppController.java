@@ -32,7 +32,7 @@ public class AppController implements Initializable {
     public TableView<Country> tvCountries;
     public ListView<Country> lvCountries;
     public ComboBox<String> cbContinent;
-    public TextField tfCapital, tfLanguage;
+    public TextField tfRegion, tfSubregion, tfCapital;
     public ProgressIndicator piAllCountries, piAllCountriesEu;
     public WebView wvFlag = new WebView();
 
@@ -42,7 +42,6 @@ public class AppController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fijarColumnasTabla();
-
         progressIndicatorActive(false);
 
         String[] continents = new String[]{"África", "América", "Asia", "Europa", "Oceanía"};
@@ -93,6 +92,7 @@ public class AppController implements Initializable {
     public void detailFlag(Event event){
         Country country = tvCountries.getSelectionModel().getSelectedItem();
         wvFlag.getEngine().load(country.getFlag());
+        wvFlag.setZoom(0.2);
     }
 
 
@@ -129,7 +129,6 @@ public class AppController implements Initializable {
     }
 
 
-
     //Todos los países de la api
     @FXML
     public void allCountries(Event event){
@@ -143,18 +142,12 @@ public class AppController implements Initializable {
                 .subscribe(country -> listCountries.add(country));
     }
 
+    //Método de selección de país en lista y los muestra en los textFields
     @FXML
     public void detailList(Event event){
         Country countrySelection = lvCountries.getSelectionModel().getSelectedItem();
+        tfRegion.setText(countrySelection.getRegion());
+        tfSubregion.setText(countrySelection.getSubregion());
         tfCapital.setText(countrySelection.getCapital());
-        tfLanguage.setText(countrySelection.getLanguage());
-
-
-    }
-
-    public void loadingDetails(Country country){
-        tfCapital.setText(country.getCapital());
-        tfLanguage.setText(country.getLanguage());
-
     }
 }
