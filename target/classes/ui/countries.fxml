@@ -22,48 +22,48 @@
                   <Font name="Gill Sans Nova Ultra Bold" size="48.0" />
                </font>
             </Label>
-            <Button fx:id="btCountries" layoutX="616.0" layoutY="100.0" mnemonicParsing="false" onAction="#allCountries" text="VER TODOS LOS PAÍSES DE LA API" />
-            <ListView fx:id="lvCountries" layoutX="528.0" layoutY="167.0" onMouseClicked="#detailList" prefHeight="335.0" prefWidth="217.0" />
-            <Label layoutX="774.0" layoutY="240.0" prefHeight="20.0" prefWidth="149.0" text="Zona del continente:">
+            <Button fx:id="btCountries" layoutX="625.0" layoutY="81.0" mnemonicParsing="false" onAction="#allCountries" text="VER LOS PAÍSES DEL MUNDO" />
+            <ListView fx:id="lvCountries" layoutX="528.0" layoutY="144.0" onMouseClicked="#detailList" prefHeight="347.0" prefWidth="217.0" />
+            <Label layoutX="774.0" layoutY="246.0" prefHeight="20.0" prefWidth="149.0" text="Zona del continente:">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="tfSubregion" layoutX="774.0" layoutY="260.0" />
+            <TextField fx:id="tfSubregion" layoutX="774.0" layoutY="266.0" />
             <Label layoutX="774.0" layoutY="301.0" text="Capital:">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Separator layoutX="471.0" layoutY="64.0" orientation="VERTICAL" prefHeight="494.0" prefWidth="8.0" style="-fx-background-color: #000000;" />
-            <TextField fx:id="tfCapital" layoutX="774.0" layoutY="322.0" />
-            <ComboBox fx:id="cbContinent" layoutX="161.0" layoutY="100.0" prefWidth="150.0" />
-            <Label layoutX="31.0" layoutY="103.0" text="Elegir continente:">
+            <Separator layoutX="472.0" layoutY="64.0" orientation="VERTICAL" prefHeight="524.0" prefWidth="7.0" style="-fx-background-color: #000000;" />
+            <TextField fx:id="tfCapital" layoutX="774.0" layoutY="319.0" />
+            <ComboBox fx:id="cbContinent" layoutX="162.0" layoutY="81.0" prefWidth="150.0" />
+            <Label layoutX="31.0" layoutY="83.0" text="Elegir continente:">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button layoutX="347.0" layoutY="100.0" mnemonicParsing="false" onAction="#allCountriesContinent" text="Aceptar" />
-            <TableView fx:id="tvCountries" layoutX="19.0" layoutY="166.0" onMouseClicked="#detailFlag" prefHeight="262.0" prefWidth="435.0" />
-            <ProgressIndicator fx:id="piAllCountriesRegion" layoutX="425.0" layoutY="93.0" prefHeight="43.0" prefWidth="46.0" progress="0.0" />
-            <Label layoutX="31.0" layoutY="143.0" text="Países del continente elegido, selecciona uno para ver su bandera">
+            <Button layoutX="334.0" layoutY="81.0" mnemonicParsing="false" onAction="#allCountriesContinent" text="Aceptar" />
+            <TableView fx:id="tvCountries" layoutX="20.0" layoutY="144.0" onMouseClicked="#detailFlag" prefHeight="262.0" prefWidth="435.0" />
+            <ProgressIndicator fx:id="piAllCountriesRegion" layoutX="425.0" layoutY="83.0" prefHeight="43.0" prefWidth="46.0" progress="0.0" />
+            <Label layoutX="31.0" layoutY="125.0" text="Países del continente elegido, selecciona uno para ver su bandera">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="528.0" layoutY="143.0" text="Selecciona uno para ver más datos.">
+            <Label layoutX="528.0" layoutY="125.0" text="Selecciona uno para ver más datos.">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <WebView fx:id="wvFlag" layoutX="56.0" layoutY="431.0" prefHeight="143.0" prefWidth="355.0" />
-            <Label layoutX="774.0" layoutY="186.0" prefHeight="20.0" prefWidth="149.0" text="Continente:">
+            <WebView fx:id="wvFlag" layoutX="56.0" layoutY="414.0" prefHeight="168.0" prefWidth="355.0" />
+            <Label layoutX="774.0" layoutY="193.0" prefHeight="20.0" prefWidth="149.0" text="Continente:">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="tfRegion" layoutX="774.0" layoutY="206.0" />
-            <ProgressIndicator fx:id="piAllCountries" layoutX="625.0" layoutY="302.0" prefHeight="43.0" prefWidth="46.0" progress="0.0" />
+            <TextField fx:id="tfRegion" layoutX="774.0" layoutY="213.0" />
+            <ProgressIndicator fx:id="piAllCountries" layoutX="625.0" layoutY="291.0" prefHeight="43.0" prefWidth="46.0" progress="0.0" />
          </children>
     </AnchorPane>
   </children>

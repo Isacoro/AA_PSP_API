@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import rx.Observable;
 import rx.schedulers.Schedulers;
@@ -39,6 +38,7 @@ public class AppController implements Initializable {
     private CountriesService countriesService;
     private ObservableList<Country> listCountries;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fijarColumnasTabla();
@@ -65,10 +65,12 @@ public class AppController implements Initializable {
                 CompletableFuture.runAsync(() -> loadingCountries("Africa"));
                 progressIndicatorActiveTable(true);
                 break;
+
             case "América":
                 CompletableFuture.runAsync(() -> loadingCountries("Americas"));
                 progressIndicatorActiveTable(true);
                 break;
+
             case "Asia":
                 CompletableFuture.runAsync(() -> loadingCountries("Asia"));
                 progressIndicatorActiveTable(true);
@@ -77,30 +79,34 @@ public class AppController implements Initializable {
                 CompletableFuture.runAsync(() -> loadingCountries("Europe"));
                 progressIndicatorActiveTable(true);
                 break;
+
             case "Oceanía":
                 CompletableFuture.runAsync(() -> loadingCountries("Oceania"));
                 progressIndicatorActiveTable(true);
                 break;
+                
             default:
                 Alerts.alertInformation("Elige una opción");
                 break;
         }
     }
 
-
-    //Mostrar Detalle (bandera) por país elegido
+    //Mostrar detalle (bandera) por país elegido
     @FXML
     public void detailFlag(Event event) {
         Country country = tvCountries.getSelectionModel().getSelectedItem();
         wvFlag.getEngine().load(country.getFlag());
-        wvFlag.setZoom(0.2);
+        wvFlag.setZoom(0.3);
     }
-
 
     //Fijar columnas de la tabla países por continente
     public void fijarColumnasTabla() {
         Field[] fields = Country.class.getDeclaredFields();
         for (Field field : fields) {
+            if (field.getName().equals("flag"))
+                continue;
+            if(field.getName().equals("subregion"))
+                continue;
 
             TableColumn<Country, String> column = new TableColumn<>(field.getName());
             column.setCellValueFactory(new PropertyValueFactory<>(field.getName()));
@@ -109,16 +115,10 @@ public class AppController implements Initializable {
         tvCountries.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
-
     //Carga de los países por continente
     public void loadingCountries(String continent) {
-        List<Country> countries = null;
+        List<Country> countries = countriesService.getAllCountriesRegion(continent);
 
-        try {
-            countries = countriesService.getAllCountriesRegion(continent);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         tvCountries.setItems(FXCollections.observableArrayList(countries));
         progressIndicatorActiveTable(false);
     }
@@ -128,12 +128,6 @@ public class AppController implements Initializable {
     public void progressIndicatorActiveTable(boolean active) {
         piAllCountriesRegion.setVisible(active);
         piAllCountriesRegion.setProgress(-1);
-    }
-
-    //Indicador de progreso de la lista
-    public void progressIndicatorActiveList(boolean active) {
-        piAllCountries.setVisible(active);
-        piAllCountries.setProgress(-1);
     }
 
     //Todos los países de la api
@@ -150,12 +144,18 @@ public class AppController implements Initializable {
                 .subscribe(country -> listCountries.add(country));
     }
 
-        //Método de selección de país en lista y los muestra en los textFields
+    //Método de selección de país en lista y los muestra en los textFields
     @FXML
     public void detailList (Event event){
         Country countrySelection = lvCountries.getSelectionModel().getSelectedItem();
         tfRegion.setText(countrySelection.getRegion());
         tfSubregion.setText(countrySelection.getSubregion());
         tfCapital.setText(countrySelection.getCapital());
+    }
+
+    //Indicador de progreso de la lista
+    public void progressIndicatorActiveList(boolean active) {
+        piAllCountries.setVisible(active);
+        piAllCountries.setProgress(-1);
     }
 }
