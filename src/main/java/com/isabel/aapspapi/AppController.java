@@ -34,7 +34,7 @@ public class AppController implements Initializable {
     public ComboBox<String> cbContinent;
     public TextField tfRegion, tfSubregion, tfCapital;
     public ProgressIndicator piAllCountriesRegion, piAllCountries;
-    public WebEngine wvFlag = new WebEngine();
+    public WebView wvFlag = new WebView();
 
     private CountriesService countriesService;
     private ObservableList<Country> listCountries;
@@ -96,8 +96,8 @@ public class AppController implements Initializable {
     @FXML
     public void detailFlag(Event event) {
         Country country = tvCountries.getSelectionModel().getSelectedItem();
-        wvFlag.load(country.getFlag());
-        //wvFlag.setZoom(0.3);
+        wvFlag.getEngine().load(country.getFlag());
+        wvFlag.setZoom(0.3);
     }
 
     //Fijar columnas de la tabla países por continente
