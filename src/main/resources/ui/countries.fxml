@@ -64,6 +64,14 @@
             </Label>
             <TextField fx:id="tfRegion" layoutX="774.0" layoutY="213.0" />
             <ProgressIndicator fx:id="piAllCountries" layoutX="625.0" layoutY="291.0" prefHeight="43.0" prefWidth="46.0" progress="0.0" />
+            <Label layoutX="532.0" layoutY="537.0" text="Exportar lista de países:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="btExportZip" layoutX="728.0" layoutY="538.0" mnemonicParsing="false" onAction="#exportZip" prefHeight="25.0" prefWidth="70.0" text="ZIP" />
+            <Button fx:id="btExportCsv" layoutX="820.0" layoutY="538.0" mnemonicParsing="false" onAction="#exportCsv" prefHeight="25.0" prefWidth="70.0" text="CSV" />
+            <Separator layoutX="505.0" layoutY="514.0" prefHeight="1.0" prefWidth="421.0" />
          </children>
     </AnchorPane>
   </children>

@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import rx.Observable;
 import rx.schedulers.Schedulers;
@@ -33,7 +34,7 @@ public class AppController implements Initializable {
     public ComboBox<String> cbContinent;
     public TextField tfRegion, tfSubregion, tfCapital;
     public ProgressIndicator piAllCountriesRegion, piAllCountries;
-    public WebView wvFlag = new WebView();
+    public WebEngine wvFlag = new WebEngine();
 
     private CountriesService countriesService;
     private ObservableList<Country> listCountries;
@@ -95,8 +96,8 @@ public class AppController implements Initializable {
     @FXML
     public void detailFlag(Event event) {
         Country country = tvCountries.getSelectionModel().getSelectedItem();
-        wvFlag.getEngine().load(country.getFlag());
-        wvFlag.setZoom(0.3);
+        wvFlag.load(country.getFlag());
+        //wvFlag.setZoom(0.3);
     }
 
     //Fijar columnas de la tabla países por continente
