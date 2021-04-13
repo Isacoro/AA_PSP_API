@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.web.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
-<VBox prefHeight="593.0" prefWidth="948.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="593.0" prefWidth="1274.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="599.0" prefWidth="950.0" style="-fx-background-color: #90caf9;" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="593.0" prefWidth="1256.0" style="-fx-background-color: #90caf9;" VBox.vgrow="ALWAYS">
          <children>
-            <Label layoutX="99.0" prefHeight="66.0" prefWidth="751.0" text="CONTINENTES Y PAÍSES" textFill="#222015">
+            <Label layoutX="273.0" prefHeight="66.0" prefWidth="751.0" text="CONTINENTES Y PAÍSES" textFill="#222015">
                <font>
                   <Font name="Gill Sans Nova Ultra Bold" size="48.0" />
                </font>
@@ -64,6 +72,18 @@
             <Button fx:id="btExportZip" layoutX="728.0" layoutY="538.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="ZIP" />
             <Button fx:id="btExportCsv" layoutX="820.0" layoutY="538.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="CSV" />
             <Separator layoutX="505.0" layoutY="514.0" prefHeight="1.0" prefWidth="421.0" />
+            <Separator layoutX="952.0" layoutY="59.0" orientation="VERTICAL" prefHeight="524.0" prefWidth="7.0" style="-fx-background-color: #000000;" />
+            <TextField fx:id="tfSearchCountrie" layoutX="1059.0" layoutY="201.0" />
+            <Label layoutX="966.0" layoutY="204.0" text="Buscar un país ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="btSearchCountrie" layoutX="1214.0" layoutY="201.0" mnemonicParsing="false" onAction="#searchCountrie" text="Buscar" />
+            <TextField fx:id="tfPopulation" layoutX="1065.0" layoutY="299.0" />
+            <Label layoutX="986.0" layoutY="303.0" text="Población" />
+            <Label layoutX="986.0" layoutY="344.0" text="Idioma" />
+            <TextField fx:id="tfLanguage" layoutX="1065.0" layoutY="340.0" />
          </children>
     </AnchorPane>
   </children>

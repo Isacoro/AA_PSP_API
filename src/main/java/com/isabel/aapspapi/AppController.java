@@ -18,6 +18,7 @@ import rx.schedulers.Schedulers;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
@@ -32,7 +33,7 @@ public class AppController implements Initializable {
     public TableView<Country> tvCountries;
     public ListView<Country> lvCountries;
     public ComboBox<String> cbContinent;
-    public TextField tfRegion, tfSubregion, tfCapital;
+    public TextField tfRegion, tfSubregion, tfCapital, tfSearchCountrie, tfPopulation;
     public ProgressIndicator piAllCountriesRegion, piAllCountries;
     public WebView wvFlag = new WebView();
 
@@ -158,5 +159,20 @@ public class AppController implements Initializable {
     public void progressIndicatorActiveList(boolean active) {
         piAllCountries.setVisible(active);
         piAllCountries.setProgress(-1);
+    }
+
+    //Busqueda por país elegido
+    @FXML
+    public void searchCountrie(Event event){
+
+        String nameCountrie = tfSearchCountrie.getText();
+
+        countriesService.getAllCountries()
+                .flatMap(Observable::from)
+                .filter(country -> country.getName().startsWith(nameCountrie))
+                .doOnCompleted(() -> { System.out.println("Datos descargados");})
+                .doOnError(throwable -> System.out.println("Error: " + throwable))
+                .subscribeOn(Schedulers.from(Executors.newCachedThreadPool()))
+                .subscribe(country -> tfPopulation.setText(String.valueOf(country.getPopulation())));
     }
 }
