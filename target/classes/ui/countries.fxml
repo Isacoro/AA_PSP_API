@@ -69,21 +69,35 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="btExportZip" layoutX="728.0" layoutY="538.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="ZIP" />
-            <Button fx:id="btExportCsv" layoutX="820.0" layoutY="538.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="CSV" />
+            <Button fx:id="btExportZip" layoutX="835.0" layoutY="539.0" mnemonicParsing="false" onAction="#exportZIP" prefHeight="25.0" prefWidth="70.0" text="ZIP" />
+            <Button fx:id="btExportCsv" layoutX="739.0" layoutY="539.0" mnemonicParsing="false" onAction="#exportCSV" prefHeight="25.0" prefWidth="70.0" text="CSV" />
             <Separator layoutX="505.0" layoutY="514.0" prefHeight="1.0" prefWidth="421.0" />
             <Separator layoutX="952.0" layoutY="59.0" orientation="VERTICAL" prefHeight="524.0" prefWidth="7.0" style="-fx-background-color: #000000;" />
-            <TextField fx:id="tfSearchCountrie" layoutX="1059.0" layoutY="201.0" />
-            <Label layoutX="966.0" layoutY="204.0" text="Buscar un país ">
+            <TextField fx:id="tfSearchCountrie" layoutX="985.0" layoutY="226.0" promptText="Nombre del país">
                <font>
                   <Font size="14.0" />
                </font>
+            </TextField>
+            <Label layoutX="1002.0" layoutY="80.0" text="Población según país elegido">
+               <font>
+                  <Font size="18.0" />
+               </font>
             </Label>
-            <Button fx:id="btSearchCountrie" layoutX="1214.0" layoutY="201.0" mnemonicParsing="false" onAction="#searchCountrie" text="Buscar" />
-            <TextField fx:id="tfPopulation" layoutX="1065.0" layoutY="299.0" />
-            <Label layoutX="986.0" layoutY="303.0" text="Población" />
-            <Label layoutX="986.0" layoutY="344.0" text="Idioma" />
-            <TextField fx:id="tfLanguage" layoutX="1065.0" layoutY="340.0" />
+            <Button fx:id="btSearchCountrie" layoutX="1173.0" layoutY="226.0" mnemonicParsing="false" onAction="#searchCountrie" prefHeight="30.0" prefWidth="80.0" text="Buscar">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <TextField fx:id="tfPopulation" layoutX="1078.0" layoutY="297.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="985.0" layoutY="298.0" text="Población">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
     </AnchorPane>
   </children>

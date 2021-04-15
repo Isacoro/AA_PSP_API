@@ -12,10 +12,14 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.FileChooser;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
 import rx.Observable;
 import rx.schedulers.Schedulers;
 
-import java.io.IOException;
+import javax.swing.*;
+import java.io.*;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,6 +27,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executors;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 /**
  * @author Isabel
@@ -34,6 +40,7 @@ public class AppController implements Initializable {
     public ListView<Country> lvCountries;
     public ComboBox<String> cbContinent;
     public TextField tfRegion, tfSubregion, tfCapital, tfSearchCountrie, tfPopulation;
+    public Button btExportCsv, btExportZip;
     public ProgressIndicator piAllCountriesRegion, piAllCountries;
     public WebView wvFlag = new WebView();
 
@@ -86,7 +93,7 @@ public class AppController implements Initializable {
                 CompletableFuture.runAsync(() -> loadingCountries("Oceania"));
                 progressIndicatorActiveTable(true);
                 break;
-                
+
             default:
                 Alerts.alertInformation("Elige una opción");
                 break;
@@ -107,7 +114,7 @@ public class AppController implements Initializable {
         for (Field field : fields) {
             if (field.getName().equals("flag"))
                 continue;
-            if(field.getName().equals("subregion"))
+            if (field.getName().equals("subregion"))
                 continue;
 
             TableColumn<Country, String> column = new TableColumn<>(field.getName());
@@ -134,7 +141,7 @@ public class AppController implements Initializable {
 
     //Todos los países de la api
     @FXML
-    public void allCountries (Event event){
+    public void allCountries(Event event) {
         lvCountries.getItems().clear();
         progressIndicatorActiveList(true);
 
@@ -148,7 +155,7 @@ public class AppController implements Initializable {
 
     //Método de selección de país en lista y los muestra en los textFields
     @FXML
-    public void detailList (Event event){
+    public void detailList(Event event) {
         Country countrySelection = lvCountries.getSelectionModel().getSelectedItem();
         tfRegion.setText(countrySelection.getRegion());
         tfSubregion.setText(countrySelection.getSubregion());
@@ -163,16 +170,87 @@ public class AppController implements Initializable {
 
     //Busqueda por país elegido
     @FXML
-    public void searchCountrie(Event event){
+    public void searchCountrie(Event event) {
 
         String nameCountrie = tfSearchCountrie.getText();
 
         countriesService.getAllCountries()
                 .flatMap(Observable::from)
                 .filter(country -> country.getName().startsWith(nameCountrie))
-                .doOnCompleted(() -> { System.out.println("Datos descargados");})
+                .doOnCompleted(() -> {
+                    System.out.println("Datos descargados");
+                })
                 .doOnError(throwable -> System.out.println("Error: " + throwable))
                 .subscribeOn(Schedulers.from(Executors.newCachedThreadPool()))
                 .subscribe(country -> tfPopulation.setText(String.valueOf(country.getPopulation())));
+    }
+
+    @FXML
+    public void exportCSV(Event event) {
+        exportCsvMethod();
+        Alerts.alertInformation("Exportado el archivo csv");
+    }
+
+    @FXML
+    public void exportZIP(Event event) {
+//        CompletableFuture.supplyAsync(() -> exportCsvMethod()).thenAccept(value -> exportZipMethod(value));
+
+    }
+
+    private File exportCsvMethod() {
+
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showSaveDialog(btExportCsv.getScene().getWindow());
+
+        FileWriter fileWriter = null;
+
+        try {
+            fileWriter = new FileWriter(file + ".csv");
+
+            CSVPrinter printer = null;
+
+            printer = new CSVPrinter(fileWriter, CSVFormat.DEFAULT);
+
+
+            List<Country> exportCSVList = listCountries;
+
+            for (Country country : exportCSVList) {
+                printer.printRecord(
+                        country.getName()
+                );
+            }
+            printer.close();
+
+        } catch (IOException io) {
+            Alerts.alertError("Error al exportar los datos");
+        }
+        return file;
+    }
+
+    private void exportZipMethod(File file) {
+
+//        try {
+//            fos = new FileOutputStream("compressed.zip");
+//
+//            ZipOutputStream zipOut = new ZipOutputStream(fos);
+//
+//            FileInputStream fis = new FileInputStream(file);
+//            ZipEntry zipEntry = new ZipEntry(file.getName());
+//            zipOut.putNextEntry(zipEntry);
+//
+//            byte[] bytes = new byte[1024];
+//            int length;
+//            while ((length = fis.read(bytes)) >= 0) {
+//                zipOut.write(bytes, 0, length);
+//            }
+//
+//            zipOut.close();
+//            fis.close();
+//            fos.close();
+//        } catch (IOException io) {
+//            Alerts.alertError("Error al exportar los datos");
+//        }
+//    }
+
     }
 }

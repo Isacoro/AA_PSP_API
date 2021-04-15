@@ -69,8 +69,8 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="btExportZip" layoutX="728.0" layoutY="538.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="ZIP" />
-            <Button fx:id="btExportCsv" layoutX="820.0" layoutY="538.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="CSV" />
+            <Button fx:id="btExportZip" layoutX="835.0" layoutY="539.0" mnemonicParsing="false" onAction="#exportZIP" prefHeight="25.0" prefWidth="70.0" text="ZIP" />
+            <Button fx:id="btExportCsv" layoutX="739.0" layoutY="539.0" mnemonicParsing="false" onAction="#exportCSV" prefHeight="25.0" prefWidth="70.0" text="CSV" />
             <Separator layoutX="505.0" layoutY="514.0" prefHeight="1.0" prefWidth="421.0" />
             <Separator layoutX="952.0" layoutY="59.0" orientation="VERTICAL" prefHeight="524.0" prefWidth="7.0" style="-fx-background-color: #000000;" />
             <TextField fx:id="tfSearchCountrie" layoutX="985.0" layoutY="226.0" promptText="Nombre del país">
