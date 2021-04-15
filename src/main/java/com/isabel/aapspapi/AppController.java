@@ -193,7 +193,7 @@ public class AppController implements Initializable {
 
     @FXML
     public void exportZIP(Event event) {
-//        CompletableFuture.supplyAsync(() -> exportCsvMethod()).thenAccept(value -> exportZipMethod(value));
+//      CompletableFuture.supplyAsync(() -> exportCsvMethod()).thenAccept(value -> exportZipMethod(value));
 
     }
 
@@ -202,35 +202,37 @@ public class AppController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showSaveDialog(btExportCsv.getScene().getWindow());
 
-        FileWriter fileWriter = null;
+            FileWriter fileWriter = null;
 
-        try {
-            fileWriter = new FileWriter(file + ".csv");
+            try {
+                fileWriter = new FileWriter(file + ".csv");
 
-            CSVPrinter printer = null;
+                CSVPrinter printer = null;
 
-            printer = new CSVPrinter(fileWriter, CSVFormat.DEFAULT);
+                printer = new CSVPrinter(fileWriter, CSVFormat.DEFAULT);
 
 
-            List<Country> exportCSVList = listCountries;
+                List<Country> exportCSVList = listCountries;
 
-            for (Country country : exportCSVList) {
-                printer.printRecord(
-                        country.getName()
-                );
-            }
+                for (Country country : exportCSVList) {
+                    printer.printRecord(
+                            country.getName()
+                    );
+                }
             printer.close();
 
-        } catch (IOException io) {
-            Alerts.alertError("Error al exportar los datos");
-        }
+
+            } catch (IOException io) {
+                Alerts.alertError("Error al exportar los datos");
+            }
         return file;
     }
+
 
     private void exportZipMethod(File file) {
 
 //        try {
-//            fos = new FileOutputStream("compressed.zip");
+//            FileOutputStream fos = new FileOutputStream("compressed.zip");
 //
 //            ZipOutputStream zipOut = new ZipOutputStream(fos);
 //
@@ -250,7 +252,6 @@ public class AppController implements Initializable {
 //        } catch (IOException io) {
 //            Alerts.alertError("Error al exportar los datos");
 //        }
-//    }
-
     }
+
 }
